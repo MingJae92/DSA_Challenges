@@ -51,6 +51,32 @@
 
 //Answers
 
+//Problem 1
+
+const sumArithmeticProgression = (firstTerm, lastTerm, numTerms) =>
+    numTerms * (firstTerm + lastTerm) / 2;
+
+const sumMultiplesOf = (n, limit) => {
+    const numMultiples = Math.floor((limit - 1) / n);
+    const lastMultiple = numMultiples * n;
+    return sumArithmeticProgression(n, lastMultiple, numMultiples);
+};
+
+const limit = 1000;
+
+const sumOfMultiplesOf3 = sumMultiplesOf(3, limit);
+const sumOfMultiplesOf5 = sumMultiplesOf(5, limit);
+const sumOfMultiplesOf15 = sumMultiplesOf(15, limit);
+
+const totalSum = sumOfMultiplesOf3 + sumOfMultiplesOf5 - sumOfMultiplesOf15;
+
+console.log("The sum of all multiples of 3 or 5 below 1000 is:", totalSum);
+
+
+
+//Problem 2
+
+
 
 
 
