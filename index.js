@@ -138,6 +138,43 @@ const largestPalindromeProduct = () => {
 const result = largestPalindromeProduct();
 console.log(`The largest palindrome made from the product of two 3-digit numbers is: ${result}`);
 
+//Problem 4
+
+// Create an object to store the prime factors and their counts
+const primeFactors = {};
+
+// Iterate through numbers from 2 to 20
+for (let i = 2; i <= 20; i++) {
+  let num = i;
+  
+  // Iterate through potential divisors starting from 2
+  for (let j = 2; j <= num; j++) {
+    // While num is divisible by j, keep dividing and updating prime factors
+    while (num % j === 0) {
+      // If the prime factor is not yet in the object, initialize its count
+      if (!primeFactors[j]) {
+        primeFactors[j] = 0;
+      }
+      // Increment the count of the prime factor
+      primeFactors[j]++;
+      num /= j;
+    }
+  }
+}
+
+// Initialize the LCM
+let lcm = 1;
+
+// Calculate LCM by multiplying prime factors raised to their respective counts
+for (const factor in primeFactors) {
+  // Calculate the power using Math.pow and multiply to the LCM
+  lcm *= Math.pow(parseInt(factor), primeFactors[factor]);
+}
+
+// Print the calculated LCM
+console.log(lcm);
+
+
 
 
 
