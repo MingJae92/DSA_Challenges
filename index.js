@@ -174,6 +174,43 @@ for (const factor in primeFactors) {
 // Print the calculated LCM
 console.log(lcm);
 
+// Problem 5
+
+// Function to check if a number is prime
+const isPrime = num => {
+    if (num <= 1) return false; // 1 is not a prime number
+    if (num <= 3) return true;  // 2 and 3 are prime numbers
+    if (num % 2 === 0 || num % 3 === 0) return false; // Divisible by 2 or 3
+    
+    // Check divisibility by numbers of the form 6k +/- 1
+    for (let i = 5; i * i <= num; i += 6) {
+      if (num % i === 0 || num % (i + 2) === 0) return false;
+    }
+    
+    return true; // If no divisors found, the number is prime
+  };
+  
+  // Function to find the Nth prime number
+  const findNthPrime = n => {
+    if (n === 1) return 2; // The first prime number is 2
+    
+    let count = 1; // Starting with the first prime (2)
+    let num = 3;   // Starting the search from 3
+    
+    while (count < n) {
+      if (isPrime(num)) count++; // If num is prime, increment the count
+      if (count === n) break;    // If desired count is reached, exit loop
+      num += 2; // Skip even numbers, as all primes > 2 are odd
+    }
+    
+    return num; // Return the Nth prime number
+  };
+  
+  const nthPrimeToFind = 10001; // Specify the Nth prime number to find
+  const nthPrimeResult = findNthPrime(nthPrimeToFind); // Find the Nth prime number
+  console.log(`The ${nthPrimeToFind}st prime number is ${nthPrimeResult}.`); // Display the result
+  
+
 
 
 
