@@ -100,6 +100,45 @@ while (currentTerm <= 4000000) {
 // Display the result
 console.log(`The sum of even-valued Fibonacci terms not exceeding four million is: ${sum}`);
 
+// Problem 3
+
+// Function to check if a number is palindrome
+const isPalindrome = num => {
+    const numStr = num.toString();
+    return numStr === numStr.split('').reverse().join('');
+};
+
+// Function to find the largest palindrome product of two 3-digit numbers
+const largestPalindromeProduct = () => {
+    let largestPalindrome = 0;
+
+    // Using forEach for the outer loop, iterating from 999 down to 100
+    Array.from({ length: 900 }, (_, indexI) => 999 - indexI).forEach(i => {
+        // Using some for the inner loop, iterating from i down to 100
+        // The some function simulates a loop break when returning true
+        Array.from({ length: i - 99 }, (_, indexJ) => i - indexJ).some(j => {
+            const product = i * j;
+
+            if (product <= largestPalindrome) {
+                // Exit the loop if the product is smaller than the current largest palindrome
+                return true;
+            }
+
+            if (isPalindrome(product)) {
+                largestPalindrome = product;
+            }
+
+            return false;
+        });
+    });
+
+    return largestPalindrome;
+};
+
+const result = largestPalindromeProduct();
+console.log(`The largest palindrome made from the product of two 3-digit numbers is: ${result}`);
+
+
 
 
 
