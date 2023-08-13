@@ -81,6 +81,26 @@ const totalSum = sumOfMultiplesOf3 + sumOfMultiplesOf5 - sumOfMultiplesOf15;
 // Display the result
 console.log("The sum of all multiples of 3 or 5 below 1000 is:", totalSum);
 
+//Problem 2
+
+// Initialize the previous and current terms in the Fibonacci sequence
+let [prevTerm, currentTerm] = [1, 2];
+let sum = 0; // Initialize the sum of even-valued terms
+
+// Loop until the current term exceeds four million
+while (currentTerm <= 4000000) {
+    sum += currentTerm; // Add the current even-valued term to the sum
+    
+    // Calculate the next even-valued term using the formula
+    // The pattern is: odd, odd, even, odd, odd, even, ...
+    // So, we add 4 times the current term to get the next even term
+    [prevTerm, currentTerm] = [currentTerm, prevTerm + 4 * currentTerm];
+}
+
+// Display the result
+console.log(`The sum of even-valued Fibonacci terms not exceeding four million is: ${sum}`);
+
+
 
 
 
