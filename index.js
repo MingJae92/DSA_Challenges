@@ -53,28 +53,36 @@
 
 //Problem 1
 
+// Function to calculate the sum of an arithmetic progression
 const sumArithmeticProgression = (firstTerm, lastTerm, numTerms) =>
     numTerms * (firstTerm + lastTerm) / 2;
 
+// Function to calculate the sum of multiples of n below a limit
 const sumMultiplesOf = (n, limit) => {
+    // Calculate the count of multiples of n below the limit
     const numMultiples = Math.floor((limit - 1) / n);
+    // Calculate the last multiple of n below the limit
     const lastMultiple = numMultiples * n;
+    // Calculate the sum of the arithmetic progression of multiples of n
     return sumArithmeticProgression(n, lastMultiple, numMultiples);
 };
 
+// Set the limit
 const limit = 1000;
 
+// Calculate the sum of multiples of 3, 5, and 15 below the limit
 const sumOfMultiplesOf3 = sumMultiplesOf(3, limit);
 const sumOfMultiplesOf5 = sumMultiplesOf(5, limit);
 const sumOfMultiplesOf15 = sumMultiplesOf(15, limit);
 
+// Calculate the total sum by adding multiples of 3 and 5 and subtracting multiples of 15
 const totalSum = sumOfMultiplesOf3 + sumOfMultiplesOf5 - sumOfMultiplesOf15;
 
+// Display the result
 console.log("The sum of all multiples of 3 or 5 below 1000 is:", totalSum);
 
 
 
-//Problem 2
 
 
 
