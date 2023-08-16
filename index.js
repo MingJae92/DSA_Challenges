@@ -235,6 +235,22 @@ const isPrime = num => {
   const routes = countRoutes(gridSize);
   console.log(`Number of routes through a ${gridSize}x${gridSize} grid: ${routes}`);
   
+  import triangleText from "./triangle.txt"
+
+
+ // Start iterating from the second-to-last row and update the triangle in place
+for (let row = triangleText.length - 2; row >= 0; row--) {
+  for (let col = 0; col <= row; col++) {
+    // Calculate the maximum sum for the current cell by adding the maximum of the two adjacent cells in the next row
+    triangle[row][col] += Math.max(triangle[row + 1][col], triangle[row + 1][col + 1]);
+  }
+}
+
+// The maximum total sum is now stored in the top of the triangle array
+const maximumTotal = triangle[0][0];
+
+// Output the final result
+console.log("Maximum total:", maximumTotal);
   
   
 
