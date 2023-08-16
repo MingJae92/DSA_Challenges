@@ -214,28 +214,27 @@ const isPrime = num => {
   console.log(`The ${nthPrimeToFind}st prime number is ${nthPrimeResult}.`); // Display the result
 
   //Problem 6 
-
   const countRoutes = gridSize => {
-    // Create a 2D grid to store the number of routes
     const grid = Array.from({ length: gridSize + 1 }, () => Array(gridSize + 1).fill(0));
   
-    // Initialize the boundaries: the left column and top row have only 1 way to reach each cell
+    // Initialize the boundaries
     grid[0].fill(1);
     grid.forEach(row => (row[0] = 1));
   
     // Calculate routes using dynamic programming
     for (let i = 1; i <= gridSize; i++) {
-      // For each row, update each cell based on the previous row and the cell to the left
-      grid[i] = grid[i].map((cell, j) => (j === 0 ? 1 : grid[i - 1][j] + cell));
+      for (let j = 1; j <= gridSize; j++) {
+        grid[i][j] = grid[i - 1][j] + grid[i][j - 1];
+      }
     }
   
-    // The bottom-right cell contains the total number of routes
     return grid[gridSize][gridSize];
   };
   
   const gridSize = 20;
   const routes = countRoutes(gridSize);
   console.log(`Number of routes through a ${gridSize}x${gridSize} grid: ${routes}`);
+  
   
   
 
