@@ -48,6 +48,7 @@
 // That is, 3 + 7 + 4 + 9 = 23.
 // Find the maximum total from top to bottom in triangle.txt (attached to
 // the email), a 15K text file containing a triangle with one-hundred rows.
+//Graph search algo
 
 //Answers
 
@@ -68,7 +69,7 @@ const sumMultiplesOf = (n, limit) => {
 };
 
 // Set the limit
-const limit = 1000;
+const limit = 1000; 
 
 // Calculate the sum of multiples of 3, 5, and 15 below the limit
 const sumOfMultiplesOf3 = sumMultiplesOf(3, limit);
@@ -113,39 +114,32 @@ console.log(`The sum of even-valued Fibonacci terms not exceeding four million i
 
 // Function to check if a number is palindrome
 const isPalindrome = num => {
-    const numStr = num.toString();
-    return numStr === numStr.split('').reverse().join('');
+  const numStr = num.toString();
+  return numStr === numStr.split('').reverse().join('');
 };
 
 // Function to find the largest palindrome product of two 3-digit numbers
 const largestPalindromeProduct = () => {
-    let largestPalindrome = 0;
+  let largestPalindrome = 0;
 
-    // Using forEach for the outer loop, iterating from 999 down to 100
-    Array.from({ length: 900 }, (_, indexI) => 999 - indexI).forEach(i => {
-        // Using some for the inner loop, iterating from i down to 100
-        // The some function simulates a loop break when returning true
-        Array.from({ length: i - 99 }, (_, indexJ) => i - indexJ).some(j => {
-            const product = i * j;
+  for (let i = 999; i >= 100; i--) {
+      // Start j from i to avoid redundant calculations
+      // Additionally, we can optimize further by breaking the loop if a larger palindrome is not possible
+      for (let j = i; j >= 100 && i * j > largestPalindrome; j--) {
+          const product = i * j;
 
-            if (product <= largestPalindrome) {
-                // Exit the loop if the product is smaller than the current largest palindrome
-                return true;
-            }
+          if (isPalindrome(product)) {
+              largestPalindrome = product;
+          }
+      }
+  }
 
-            if (isPalindrome(product)) {
-                largestPalindrome = product;
-            }
-
-            return false;
-        });
-    });
-
-    return largestPalindrome;
+  return largestPalindrome;
 };
 
 const result = largestPalindromeProduct();
 console.log(`The largest palindrome made from the product of two 3-digit numbers is: ${result}`);
+
 
 //Problem 4
 
